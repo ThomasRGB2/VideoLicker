@@ -27,13 +27,13 @@ pub fn ffmpeg_name() -> &'static str {
     if cfg!(windows) { "ffmpeg.exe" } else { "ffmpeg" }
 }
 
-/// Per-app data dir, e.g. %APPDATA%\TubeGrab on Windows (created as needed).
+/// Per-app data dir, e.g. %APPDATA%\VideoLicker on Windows (created as needed).
 pub fn app_dir() -> PathBuf {
     let d = match (cfg!(windows), var("APPDATA")) {
-        (true, Some(a)) => PathBuf::from(a).join("TubeGrab"),
+        (true, Some(a)) => PathBuf::from(a).join("VideoLicker"),
         _ => PathBuf::from(var("HOME").unwrap_or_else(|| ".".into()))
             .join(".local/share")
-            .join("tubegrab"),
+            .join("VideoLicker"),
     };
     let _ = std::fs::create_dir_all(&d);
     d

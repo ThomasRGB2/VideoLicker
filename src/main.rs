@@ -18,12 +18,12 @@ fn main() -> eframe::Result {
     let save = bins::default_save_dir();
     let opts = eframe::NativeOptions {
         viewport: egui::ViewportBuilder::default()
-            .with_title("TubeGrab")
+            .with_title("VideoLicker")
             .with_inner_size([960.0, 640.0]),
         ..Default::default()
     };
     eframe::run_native(
-        "TubeGrab",
+        "VideoLicker",
         opts,
         Box::new(move |cc| {
             cc.egui_ctx.set_visuals(egui::Visuals::dark());
@@ -147,7 +147,7 @@ impl App {
         let (ys, fs, ds, installing) = (self.ytdlp_status.clone(), self.ffmpeg_status.clone(), self.deno_status.clone(), self.installing,);
         let mut installs: Vec<Cmd> = Vec::new();
         ui.horizontal(|ui| {
-            ui.heading("TubeGrab");
+            ui.heading("VideoLicker");
             // right_to_left: first item added ends up rightmost
             ui.with_layout(egui::Layout::right_to_left(egui::Align::Center), |ui| {
                 installs.extend(tool_chip(ui, "ffmpeg", &fs, installing, Cmd::InstallFfmpeg));
