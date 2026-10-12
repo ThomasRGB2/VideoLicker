@@ -1,0 +1,16 @@
+[package]
+name = "tubegrab"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# default_fonts is required: without it egui has no fonts and panics on first text draw.
+# x11/wayland are only needed for Linux windowing; harmless on Windows/macOS.
+eframe     = { version = "0.31", default-features = false, features = ["glow", "default_fonts", "x11", "wayland"] }
+serde_json = "1"   # parse yt-dlp's -J metadata
+ureq       = { version = "2", default-features = false, features = ["tls"] }  # rustls TLS (no openssl on Windows)
+zip        = { version = "1", default-features = false, features = ["deflate"] } # unpack the ffmpeg build
+
+[profile.release]
+lto   = true
+strip = "symbols"
